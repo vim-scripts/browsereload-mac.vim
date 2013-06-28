@@ -3,18 +3,18 @@ browsereload-mac.vim
 ========================
 
 Description
---------------------
+=====================
 
 vim plugin to reflesh your browser. 
-this plugin works only MacOS.
+this plugin works only MacOSX.
 
 Required
---------------------
+=====================
 
 osascript(AppleScript command)
 
 Installation
---------------------
+=====================
 
 ::
 
@@ -25,8 +25,18 @@ Installation
 
 see also install.sh
 
+Note
+=====================
+
+if you want to reload Firefox. Please change your System Preferences on MacOSX as below.
+
+check "Enable access for assistive devices"::
+
+ System Preferences > Universal Access > "Enable access for assistive devices"
+
+
 Usage
---------------------
+=====================
 
 browser reload::
 
@@ -54,7 +64,7 @@ stop auto reload::
 
 
 Settings
---------------------
+=====================
 
 after reload browser. forcus "Terminal" apps.
 
@@ -97,3 +107,18 @@ write this setting in your .vimrc
  command! -bar SrStop silent SafariReloadStop
  command! -bar OrStop silent OperaReloadStop
  command! -bar ArStop silent AllBrowserReloadStop
+
+You can define "reloadPreHook" and "reploadPostHook" commands.
+
+::
+
+ " default is not setting.  
+ " 1. execute "reloadPreHook" command. -> 2. refresh browser.
+ let g:reloadPreHook = "sh bulid_assets.sh"
+
+ " 1. refresh browser. ->  2. execute "reloadPostHook" command.
+ let g:reloadPostHook = "sh bulid_assets.sh"
+
+I recommend that you use along with the `vimproc.vim <https://github.com/Shougo/vimproc.vim>`_. 
+Because hook commands to be performed asynchronously.
+
